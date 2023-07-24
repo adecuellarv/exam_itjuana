@@ -3,24 +3,45 @@ import './App.css';
 
 function App() {
   const [listRamdomP1, setRamdomListP1] = useState([1, 3, 4, 5]);
-  const [resultP1, setResultP2] = useState([]);
+  const [resultP1, setResultP1] = useState([]);
 
 
   const createNewDatas = () => {
     const newArray = [];
     for (let index = 0; index < 7; index++) {
       const number = Math.round(Math.random() * 10);
-      
-      newArray.push(number);
+      if(number !== 0){
+        newArray.push(number);
+      }
     }
 
     setRamdomListP1([...newArray]);
+    calculateResult(newArray);
   }
+
+  const calculateResult = (list) => {
+    const resultArray = [];
+    //1.- validate if have values
+    if (list.length) {
+      //2.- sort
+      const newArray = list.sort((a,b) => a - b);
+      //console.log('newarray', newArray);
+      //3.- find missings
+      for (let index = newArray[0]; index <= newArray[newArray.length - 1]; index++) {
+        if(!newArray.find(i => i === index)){
+          resultArray.push(index);
+        }
+      }
+
+      setResultP1([...resultArray]);
+    }
+  }
+
 
   useEffect(() => {
     createNewDatas();
-  },[]);
- 
+  }, []);
+
   return (
     <div className="content">
       <div className='col c50'>
