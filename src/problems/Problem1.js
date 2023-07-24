@@ -5,7 +5,7 @@ function Problem1() {
     const [listRamdomP1, setRamdomListP1] = useState([1, 3, 4, 5]);
     const [resultP1, setResultP1] = useState([]);
 
-
+    //create ramdom datas
     const createNewDatas = () => {
         const newArray = [];
         for (let index = 0; index < 7; index++) {
@@ -19,6 +19,7 @@ function Problem1() {
         calculateResult(newArray);
     }
 
+    //logic of the result
     const calculateResult = (list) => {
         const resultArray = [];
         //1.- validate if have values

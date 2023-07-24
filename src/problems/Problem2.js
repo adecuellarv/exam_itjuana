@@ -6,7 +6,7 @@ function Problem2() {
     const [number, setNumber] = useState();
     const [resultP1, setResultP1] = useState([]);
 
-
+    //create datas
     const createNewDatas = () => {
         const newArray = [];
         for (let index = 1; index < 10; index++) {
@@ -19,14 +19,18 @@ function Problem2() {
         calculateResult(newArray, target);
     }
 
+    //radom target
     const getTarget = () => {
         return Math.round(Math.random() * 10);
     }
 
+    //logic of the result
     const calculateResult = (list, target) => {
         const resultArray = [];
+        // 1. create combinations
         list.flatMap(
             (v, i) => list.slice(i + 1).map(w => {
+                //2. sum of combinations and ckeck if it is equals to the target
                 if(v + w == target){
                     resultArray.push([list.indexOf(v), list.indexOf(w)]);
                 }  
