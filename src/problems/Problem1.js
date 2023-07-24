@@ -16,25 +16,8 @@ function Problem1() {
         }
 
         setRamdomListP1([...newArray]);
-        calculateResult(newArray);
-    }
-
-    //logic of the result
-    const calculateResult = (list) => {
-        const resultArray = [];
-        //1.- validate if have values
-        if (list.length) {
-            //2.- sort
-            const newArray = list.sort((a, b) => a - b);
-            //3.- find missings
-            for (let index = newArray[0]; index <= newArray[newArray.length - 1]; index++) {
-                if (!newArray.find(i => i === index)) {
-                    resultArray.push(index);
-                }
-            }
-
-            setResultP1([...resultArray]);
-        }
+        const resp = calculateResult(newArray);
+        setResultP1([...resp]);
     }
 
     useEffect(() => {
@@ -75,10 +58,28 @@ function Problem1() {
                 </label>
             </div>
             <div className='div-row'>
-                <button onClick={createNewDatas}>New datas</button>
+                <button onClick={createNewDatas}>New datas Problem1</button>
             </div>
         </div>
     );
+}
+
+//logic of the result
+export const calculateResult = (list) => {
+    const resultArray = [];
+    //1.- validate if have values
+    if (list.length) {
+        //2.- sort
+        const newArray = list.sort((a, b) => a - b);
+        //3.- find missings
+        for (let index = newArray[0]; index <= newArray[newArray.length - 1]; index++) {
+            if (!newArray.find(i => i === index)) {
+                resultArray.push(index);
+            }
+        }
+
+        return resultArray;
+    }
 }
 
 export default Problem1;
